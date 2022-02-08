@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="testActSafra">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Front-End - ACT/SAFRA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Marvel:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/cb5a9d1d26.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./assets/css/main.css">
+
+    <script src="./vendor/angular/angular.min.js"></script>
+
+    <script src="./app/app.js"></script>
+    <script src="app/controllers/searchCharacter.controller.js"></script>
+
+</head>
+
+<body ng-controller="searchCharacterCtrl">
+    <div class="loading" ng-show="loading">
+        <div class="controll">
+            <img src="./assets/img/loading.gif" alt="Image loading">
+            <p>procurando...</p>
+        </div>
+    </div>
+    <header>
+        <a href="#">
+            <img src="./assets/img/marvel-logo.png" alt="Logo Marvel">
+        </a>
+    </header>
+    <main class="container">
+        <section class="box box-search">
+            <h1>Qual o nome do personagem que quer conhece hoje?</h1>
+            <input type="text" name="search" id="search-field" ng-model="character.name" placeholder="Pesquisar...">
+
+            <button ng-click="search(character.name)" id="btn-search"><i class="fas fa-search"></i></button>
+        </section>
+
+        <section class="box box-display" ng-show="count > 0">
+            <div class="content">
+                <p class="infor-search" ng-show="count > 0">Foram encontrados {{count}} registros para <strong>{{character.name}}</strong></p>
+                <div class="item" ng-repeat="character in characters">
+                    <div class="thumbnail">
+                        <img src="{{character.thumbnail.path}}.{{character.thumbnail.extension}}" alt="">
+                    </div>
+                    <h2 class="name">{{character.name}}</h2>
+                </div>
+            </div>
+        </section>
+
+        <div class="display-error box" ng-show="count == 0">
+            <div class="not-found-error">
+                <p>Nem ele foi capaz de encontrar o que tanto procura...</p>
+                <img src="./assets/img/not_found_image.jpg" alt="Image not found">
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>Marvel testando os devs pelo mundo</p>
+    </footer>
+</body>
+
+</html>
