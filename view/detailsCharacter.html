@@ -1,0 +1,46 @@
+<div class="loading" ng-show="loading">
+    <div class="controll">
+        <img src="./assets/img/loading.gif" alt="Image loading">
+        <p>procurando...</p>
+    </div>
+</div>
+
+
+<div ng-include="'./view/parts/header.html'"></div>
+<main class="container">
+    <div class="box box-details">
+        <div class="header-details">
+            <h1>{{character.name}}</h1>
+            <h2>{{character.description != "" ? character.description : 'Não foi retornado nenhuma descrição sobre ' +
+                character.name }}</h2>
+        </div>
+        <div class="content-details">
+            <div class="box-comics">
+                <h3>Quadrinhos</h3>
+                <ul class="comic-list">
+                    <li ng-repeat="comic in character.comics.items">{{comic.name}}</li>
+                </ul>
+            </div>
+
+            <div class="thumbnails">
+                <img src="{{character.thumbnail.path +'.'+ character.thumbnail.extension}}"
+                    alt="{{character.name}} Image">
+            </div>
+        </div>
+        <div class="others-characters">
+            <h4>Conheça outros personagens</h4>
+            <ul class="list-others-characters">
+                <li ng-repeat="character in otherCharacters">
+                    <a href="#!/character/{{character.id}}">
+                        <div class="thumbnail">
+                            <img src="{{character.thumbnail.path +'.'+ character.thumbnail.extension}}"
+                            alt="{{character.name}} Image">
+                        </div>
+                        {{character.name}}</a>
+                </li>
+            </ul>
+        </div>
+        <a href="#!/home" class="btn-prev"><i class="fas fa-chevron-left"></i> voltar</a>
+    </div>
+</main>
+<div ng-include="'./view/parts/footer.html'"></div>

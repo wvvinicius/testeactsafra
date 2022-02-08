@@ -1,1 +1,1 @@
-angular.module("testActSafra", [])
+angular.module("testActSafra", ['ngRoute'])
